@@ -13,7 +13,6 @@ let CVC = document.getElementById("cardCVC");
 let CVCInput = document.getElementById("cardCVCInput");
 
 nameInput.onkeyup = (() => {
-    nameInput.value = nameInput.value;
     name.value = nameInput.value;
 })
 
@@ -23,18 +22,40 @@ numberInput.onkeyup = (() => {
 })
 
 dateMonthInput.onkeyup = (() => {
-    dateMonthInput.value = dateMonthInput.value;
     dateMonth.value = dateMonthInput.value;
+    if (dateMonthInput.value.length == 0) {
+        document.querySelector(".date + .error").style.display = "block";
+        dateMonthInput.setCustomValidity("Invalid field.");
+    } else {
+        dateMonthInput.setCustomValidity("");
+    }
+    validate();
 })
 
 dateYearInput.onkeyup = (() => {
-    dateYearInput.value = dateYearInput.value;
     dateYear.value = dateYearInput.value;
+    if (dateYearInput.value.length == 0) {
+        document.querySelector(".date + .error").style.display = "block";
+        dateYearInput.setCustomValidity("Invalid field.");
+    } else {
+        dateYearInput.setCustomValidity("");
+    }
+    validate();
 })
 
+function validate() {
+    if (dateMonthInput.checkValidity() && dateYearInput.checkValidity()) {
+        document.querySelector(".date + .error").style.display = "none";
+    }
+}
+
 CVCInput.onkeyup = (() => {
-    CVCInput.value = CVCInput.value;
     CVC.value = CVCInput.value;
+    if (CVCInput.value.length == 0) {
+        CVCInput.setCustomValidity("Invalid field.");
+    } else {
+        CVCInput.setCustomValidity("");
+    }
 })
 
 function cc_format(value) {
@@ -43,8 +64,8 @@ function cc_format(value) {
     var match = matches && matches[0] || ''
     var parts = []
 
-    for (i=0, len=match.length; i<len; i+=4) {
-        parts.push(match.substring(i, i+4))
+    for (i = 0, len = match.length; i < len; i += 4) {
+        parts.push(match.substring(i, i + 4))
     }
 
     if (parts.length) {
@@ -54,3 +75,8 @@ function cc_format(value) {
     }
 }
 
+let form = document.getElementById("form");
+
+form.onsubmit = (() => {
+    document.querySelector(".form-container").innerHTML = '<div class="status"> <figure> <img src="images/icon-complete.svg" alt=""> </figure> <h1> THANK YOU! <span>' + "We've added your card details</span>" + '</h1> <button class="btn"> Continue </button> </div>';
+})

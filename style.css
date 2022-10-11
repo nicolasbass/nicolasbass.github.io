@@ -95,7 +95,7 @@ body {
     max-width: 3em;
 }
 
-form {
+form, .status {
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -125,13 +125,48 @@ input {
     letter-spacing: inherit;
 }
 
+::placeholder {
+    color: inherit;
+}
+
+input:invalid {
+    border-color: hsl(0, 100%, 66%);
+}
+
+input:focus-visible {
+    outline: 0;
+    border-color: transparent;
+    background: 
+    linear-gradient(white, white) padding-box,
+    linear-gradient(to right, hsl(249, 99%, 64%), hsl(278, 94%, 30%)) border-box;
+}
+
+form .error {
+    color: hsl(0, 100%, 66%);
+    font-size: 13px;
+    margin-top: .5rem;
+    display: none;
+}
+
+input:invalid + .error {
+    display: block;
+}
+
+
 form input {
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: .5rem;
     border-radius: .5rem;
     width: 100%;
-    margin-bottom: 2rem;
 }
+
+form input::placeholder {
+    opacity: .2;
+}
+
+.form__row, .form__rows {
+    margin-bottom: 2rem;
+} 
 
 .form__rows {
     display: flex;
@@ -165,10 +200,32 @@ button {
     cursor: pointer;
 }
 
-button[type=submit] {
+button.btn {
     padding: 1rem;
     border-radius: .5rem;
     background-color: hsl(278, 68%, 11%);
     color: white;
     margin-top: 1rem;
+}
+
+.status {
+    align-items: center;
+}
+
+.status h1 {
+    margin-block: 2rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.status h1 span {
+    display: block;
+    color: rgb(156, 156, 156);
+    font-size: 18px;
+    letter-spacing: normal;
+    margin-top: 1rem;
+}
+
+.status .btn {
+    align-self: stretch;
 }
