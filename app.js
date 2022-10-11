@@ -36,6 +36,7 @@ CVCInput.onkeyup = (() => {
     CVCInput.value = CVCInput.value;
     CVC.value = CVCInput.value;
 })
+
 function cc_format(value) {
     var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
     var matches = v.match(/\d{4,16}/g);
