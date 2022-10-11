@@ -24,7 +24,7 @@ body {
 }
 
 .card {
-    background: url(../images/bg-main-desktop.png) no-repeat left / contain ;
+    background: url(images/bg-main-desktop.png) no-repeat left / contain ;
     color: white;
     display: flex;
     flex-flow: column;
@@ -34,7 +34,7 @@ body {
 }
 
 .card__front, .card__back {
-    background: url(../images/bg-card-front.png) no-repeat center / cover;
+    background: url(images/bg-card-front.png) no-repeat center / cover;
     border-radius: .5rem;
     padding: 2rem;
     width: 450px;
@@ -79,7 +79,7 @@ body {
 }
 
 .card__back {
-    background: url(../images/bg-card-back.png) no-repeat center / cover;
+    background: url(images/bg-card-back.png) no-repeat center / cover;
     position: relative;
     align-self: center;
 }
