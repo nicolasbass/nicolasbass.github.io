@@ -211,6 +211,83 @@ button.btn {
     align-items: center;
 }
 
+.status figure {
+    animation: show .5s;
+}
+
+.status svg {
+    overflow: visible;
+}
+
+.status svg circle {
+    stroke: #6348FE;
+    stroke-width: 4;
+    stroke-dasharray: 400%;
+    animation: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCircle, 0.3s linear 0.9s 1 both;
+}
+
+.status svg path {
+    stroke: #fff;
+    stroke-dasharray: 36px 36px;
+    animation: 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0s 1 both drawCheck, 0.3s linear 0.9s 1 both;
+}
+
+@keyframes drawCircle {
+    0% {
+      stroke-dashoffset: 400%;
+    }
+    80% {
+      stroke-dashoffset: 0;      
+    }
+    
+    100% {
+        stroke-width: 0;
+        fill: url(#a);
+    }
+  }
+
+@keyframes drawCheck {
+    0% {
+      stroke-dashoffset: 36px;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes showup {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    50% {
+        height: 198px;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.status .thanks {
+    width: 100%;
+    display: none;
+    animation: showup 1s;
+}
+
 .status h1 {
     margin-block: 2rem;
     text-align: center;
@@ -226,7 +303,7 @@ button.btn {
 }
 
 .status .btn {
-    align-self: stretch;
+    width: 100%;
 }
 
 @media only screen and (min-width: 768px) {

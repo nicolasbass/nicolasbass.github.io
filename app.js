@@ -78,5 +78,10 @@ function cc_format(value) {
 let form = document.getElementById("form");
 
 form.onsubmit = (() => {
-    document.querySelector(".form-container").innerHTML = '<div class="status"> <figure> <img src="images/icon-complete.svg" alt=""> </figure> <h1> THANK YOU! <span>' + "We've added your card details</span>" + '</h1> <button class="btn"> Continue </button> </div>';
+    document.querySelector(".form-container").innerHTML = '<div class="status"> <figure> <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="40" /><path d="M28 39.92 36.08 48l16-16" stroke-width="3"/><defs><linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse"><stop stop-color="#6348FE"/><stop offset="1" stop-color="#610595"/></linearGradient></defs></svg> </figure> <div class="thanks"> <h1> THANK YOU! <span>' + "We've added your card details </span>" + '</h1> <button class="btn"> Continue </button> </div> <div>';
+    
+    setTimeout(function(){
+        document.querySelector(".status .thanks").style.display = "block";
+    }, 600)
 })
+
