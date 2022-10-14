@@ -35,23 +35,23 @@
             </figure>
             <div class="card__front__info">
               <div class="number">
-                <input disabled type="tel" id="cardNumber" placeholder="0000 0000 0000 0000">
+                <input disabled type="tel" id="NumberCard" placeholder="0000 0000 0000 0000">
               </div>
               <div class="data">
                 <div class="data__name">
-                  <input disabled type="text" id="cardName" placeholder="Jane Appleseed">
+                  <input disabled type="text" id="NameCard" placeholder="Jane Appleseed">
                 </div>
                 <div class="data__date">
-                  <input disabled type="tel" id="cardDateMonth" placeholder="00">
+                  <input disabled type="tel" id="DateMonthCard" placeholder="00">
                   /
-                  <input disabled type="tel" id="cardDateYear" placeholder="00">
+                  <input disabled type="tel" id="DateYearCard" placeholder="00">
                 </div>
               </div>
             </div>
           </div>
           <div class="card__back">
             <div class="cvc">
-              <input disabled type="tel" name="" id="cardCVC" value="000" maxlength="3">
+              <input disabled type="tel" name="" id="CVCCard" value="000" maxlength="3">
             </div>
           </div>
         </div>
@@ -60,12 +60,12 @@
           <form action="#" method="get" id="form" autocomplete="off">
             <div class="form__row">
               <label for="cardName">Cardholder Name</label>
-              <input type="text" name="cardName" id="cardNameInput" placeholder="e.g. Jane Appleseed" minlength="4">
+              <input type="text" name="cardName" id="Name" placeholder="e.g. Jane Appleseed" minlength="4">
               <div class="error">Can't be blank</div>
             </div>
             <div class="form__row">
               <label for="cardNumber">Card Number</label>
-              <input type="tel" name="cardNumber" id="cardNumberInput" maxlength="19"
+              <input type="tel" name="cardNumber" id="Number" maxlength="19"
                 placeholder="e.g. 1234 5678 9123 0000" pattern="[0-9 ]+">
               <div class="error">Can't be blank</div>
             </div>
@@ -73,14 +73,14 @@
               <div class="form__column">
                 <label for="cardDate">Exp. Date (MM/YY)</label>
                 <div class="date">
-                  <input type="tel" name="cardDate" id="cardDateMonthInput" maxlength="2" placeholder="MM" pattern="[0-9]+" minlength="2">
-                  <input type="tel" name="cardDate" id="cardDateYearInput" maxlength="2" placeholder="YY" pattern="[0-9]+" minlength="2">
+                  <input type="tel" name="cardDate" id="DateMonth" maxlength="2" placeholder="MM" pattern="[0-9]+" minlength="2">
+                  <input type="tel" name="cardDate" id="DateYear" maxlength="2" placeholder="YY" pattern="[0-9]+" minlength="2">
                 </div>
                 <div class="error">Can't be blank</div>
               </div>
               <div class="form__column">
                 <label for="cardCVC">CVC</label>
-                <input type="tel" name="cardCVC" id="cardCVCInput" maxlength="3" placeholder="e.g. 123" minlength="3" pattern="[0-9]+">
+                <input type="tel" name="cardCVC" id="CVC" maxlength="3" placeholder="e.g. 123" minlength="3" pattern="[0-9]+">
                 <div class="error">Can't be blank</div>
               </div>
             </div>

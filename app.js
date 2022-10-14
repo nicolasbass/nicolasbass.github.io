@@ -12,55 +12,7 @@ let dateYearInput = document.getElementById("cardDateYearInput");
 let CVC = document.getElementById("cardCVC");
 let CVCInput = document.getElementById("cardCVCInput");
 
-nameInput.onkeyup = (() => {
-    name.value = nameInput.value;
-    i = 0;
-    isFilled();
-})
-
-numberInput.onkeyup = (() => {
-    numberInput.value = cc_format(numberInput.value);
-    number.value = numberInput.value;
-    i = 1;
-    isFilled();
-})
-
-dateMonthInput.onkeyup = (() => {
-    dateMonth.value = dateMonthInput.value;
-    if (dateMonthInput.value.length == 0) {
-        document.querySelector(".date + .error").style.display = "block";
-        dateMonthInput.setCustomValidity("Please fill out this field");
-    } else {
-        dateMonthInput.setCustomValidity("");
-    }
-    validate();
-})
-
-dateYearInput.onkeyup = (() => {
-    dateYear.value = dateYearInput.value;
-    if (dateYearInput.value.length == 0) {
-        document.querySelector(".date + .error").style.display = "block";
-        dateYearInput.setCustomValidity("Please fill out this field");
-    } else {
-        dateYearInput.setCustomValidity("");
-    }
-    validate();
-})
-
-function validate() {
-    if (dateMonthInput.checkValidity() && dateYearInput.checkValidity()) {
-        document.querySelector(".date + .error").style.display = "none";
-    }
-}
-
-CVCInput.onkeyup = (() => {
-    CVC.value = CVCInput.value;
-    if (CVCInput.value.length == 0) {
-        CVCInput.setCustomValidity("Please fill out this field");
-    } else {
-        CVCInput.setCustomValidity("");
-    }
-})
+let input = document.querySelectorAll("form input");
 
 function cc_format(value) {
     var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
@@ -79,7 +31,77 @@ function cc_format(value) {
     }
 }
 
-let input = document.querySelectorAll("form input");
+function isFilled(i) {
+    let errorMSG = document.querySelectorAll(".error")[i];
+    if (!input[i].checkValidity()) {
+        errorMSG.innerHTML = input[i].validationMessage;
+    }
+    if (input[i].value.length == 0) {
+        input[i].setCustomValidity("Can't be blank");
+        isValidate = false;
+        if (i == 2 || i == 3) {
+            document.querySelector(".date + .error").style.display = "block";
+        }
+    } else {
+        isValidate = true;
+        input[i].setCustomValidity("");
+    }
+}
+
+
+for (let j = 0; j < input.length; j++) {
+    input[j].onkeyup = (() => {
+        let cardInput = document.querySelector("#" + input[j].id + "Card");
+        if (j == 1) {
+            input[j].value = cc_format(input[j].value);
+        }
+        cardInput.value = input[j].value;
+        let i = j;
+        isFilled(i);
+    })
+}
+
+// nameInput.onkeyup = (() => {
+//     name.value = nameInput.value;
+//     i = 0;
+//     isFilled();
+// })
+
+// numberInput.onkeyup = (() => {
+//     numberInput.value = cc_format(numberInput.value);
+//     number.value = numberInput.value;
+//     i = 1;
+//     isFilled();
+// })
+
+// dateMonthInput.onkeyup = (() => {
+//     dateMonth.value = dateMonthInput.value;
+//     i = 2;
+//     isFilled();
+//     validate();
+// })
+
+// dateYearInput.onkeyup = (() => {
+//     dateYear.value = dateYearInput.value;
+//     i = 3;
+//     isFilled();
+//     validate();
+// })
+
+// function validate() {
+//     if (dateMonthInput.checkValidity() && dateYearInput.checkValidity()) {
+//         document.querySelector(".date + .error").style.display = "none";
+//     }
+// }
+
+// CVCInput.onkeyup = (() => {
+//     CVC.value = CVCInput.value;
+//     if (CVCInput.value.length == 0) {
+//         CVCInput.setCustomValidity("Please fill out this field");
+//     } else {
+//         CVCInput.setCustomValidity("");
+//     }
+// })
 
 let form = document.getElementById("form");
 
@@ -101,17 +123,3 @@ form.onsubmit = ((e) => {
         }, 600);
     }
 })
-
-function isFilled() {
-    let errorMSG = document.querySelectorAll(".error")[i];
-    if (!input[i].checkValidity()) {
-        errorMSG.innerHTML = input[i].validationMessage;
-    }
-    if (input[i].value.length == 0) {
-        input[i].setCustomValidity("Can't be blank");
-        isValidate = false;
-    } else {
-        isValidate = true;
-        input[i].setCustomValidity("");
-    }
-}
