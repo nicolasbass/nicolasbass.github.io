@@ -57,16 +57,17 @@
         </div>
       </div>
       <div class="form-container">
-          <form action="#" method="get" id="form">
+          <form action="#" method="get" id="form" autocomplete="off">
             <div class="form__row">
               <label for="cardName">Cardholder Name</label>
-              <input type="text" name="cardName" id="cardNameInput" placeholder="e.g. Jane Appleseed">
+              <input type="text" name="cardName" id="cardNameInput" placeholder="e.g. Jane Appleseed" minlength="4">
+              <div class="error">Can't be blank</div>
             </div>
             <div class="form__row">
               <label for="cardNumber">Card Number</label>
               <input type="tel" name="cardNumber" id="cardNumberInput" maxlength="19"
                 placeholder="e.g. 1234 5678 9123 0000" pattern="[0-9 ]+">
-              <div class="error">Wrong format, numbers only</div>
+              <div class="error">Can't be blank</div>
             </div>
             <div class="form__rows">
               <div class="form__column">
@@ -79,7 +80,7 @@
               </div>
               <div class="form__column">
                 <label for="cardCVC">CVC</label>
-                <input type="tel" name="cardCVC" id="cardCVCInput" maxlength="3" placeholder="e.g. 123" minlength="3">
+                <input type="tel" name="cardCVC" id="cardCVCInput" maxlength="3" placeholder="e.g. 123" minlength="3" pattern="[0-9]+">
                 <div class="error">Can't be blank</div>
               </div>
             </div>

@@ -207,6 +207,10 @@ button.btn {
     margin-top: .3rem;
 }
 
+/* button:disabled {
+    cursor: default;
+} */
+
 .status {
     align-items: center;
 }
