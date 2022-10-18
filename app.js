@@ -1,16 +1,4 @@
-let number = document.getElementById("cardNumber");
-let numberInput = document.getElementById("cardNumberInput");
-
-let name = document.getElementById("cardName");
-let nameInput = document.getElementById("cardNameInput");
-
-let dateMonth = document.getElementById("cardDateMonth");
-let dateMonthInput = document.getElementById("cardDateMonthInput");
-let dateYear = document.getElementById("cardDateYear");
-let dateYearInput = document.getElementById("cardDateYearInput");
-
-let CVC = document.getElementById("cardCVC");
-let CVCInput = document.getElementById("cardCVCInput");
+"use strict";
 
 let input = document.querySelectorAll("form input");
 
@@ -20,8 +8,8 @@ function cc_format(value) {
     var match = matches && matches[0] || ''
     var parts = []
 
-    for (i = 0, len = match.length; i < len; i += 4) {
-        parts.push(match.substring(i, i + 4))
+    for (let k = 0, len = match.length; k < len; k += 4) {
+        parts.push(match.substring(k, k + 4))
     }
 
     if (parts.length) {
@@ -31,10 +19,18 @@ function cc_format(value) {
     }
 }
 
+function validDate() {
+    if (input[2].checkValidity() && input[3].checkValidity()) {
+        document.querySelector(".date + .error").style.display = "none";
+    }
+}
+
+console.log(document.querySelectorAll(".error")[4])
+
 function isFilled(i) {
     let errorMSG = document.querySelectorAll(".error")[i];
-    if (!input[i].checkValidity()) {
-        errorMSG.innerHTML = input[i].validationMessage;
+    if (i == 4 || i == 3) {
+        errorMSG = document.querySelectorAll(".error")[i - 1];
     }
     if (input[i].value.length == 0) {
         input[i].setCustomValidity("Can't be blank");
@@ -45,9 +41,12 @@ function isFilled(i) {
     } else {
         isValidate = true;
         input[i].setCustomValidity("");
+        validDate();
+    }
+    if (!input[i].checkValidity()) {
+        errorMSG.innerHTML = input[i].validationMessage;
     }
 }
-
 
 for (let j = 0; j < input.length; j++) {
     input[j].onkeyup = (() => {
@@ -61,48 +60,6 @@ for (let j = 0; j < input.length; j++) {
     })
 }
 
-// nameInput.onkeyup = (() => {
-//     name.value = nameInput.value;
-//     i = 0;
-//     isFilled();
-// })
-
-// numberInput.onkeyup = (() => {
-//     numberInput.value = cc_format(numberInput.value);
-//     number.value = numberInput.value;
-//     i = 1;
-//     isFilled();
-// })
-
-// dateMonthInput.onkeyup = (() => {
-//     dateMonth.value = dateMonthInput.value;
-//     i = 2;
-//     isFilled();
-//     validate();
-// })
-
-// dateYearInput.onkeyup = (() => {
-//     dateYear.value = dateYearInput.value;
-//     i = 3;
-//     isFilled();
-//     validate();
-// })
-
-// function validate() {
-//     if (dateMonthInput.checkValidity() && dateYearInput.checkValidity()) {
-//         document.querySelector(".date + .error").style.display = "none";
-//     }
-// }
-
-// CVCInput.onkeyup = (() => {
-//     CVC.value = CVCInput.value;
-//     if (CVCInput.value.length == 0) {
-//         CVCInput.setCustomValidity("Please fill out this field");
-//     } else {
-//         CVCInput.setCustomValidity("");
-//     }
-// })
-
 let form = document.getElementById("form");
 
 let isValidate = true;
@@ -110,8 +67,8 @@ let isValidate = true;
 form.onsubmit = ((e) => {
     e.preventDefault();
 
-    for (i = 0; i < input.length; i++) {
-        isFilled();
+    for (let i = 0; i < input.length; i++) {
+        isFilled(i);
     };
 
     if (isValidate) {
